@@ -6,13 +6,10 @@
 
 [node name="MultiplayerTowerDefense" type="Node"]
 script = ExtResource( 1 )
+port = 9142
 ip = "gamedev.paulmethfessel.com"
-auto_connect = false
 player_scene = ExtResource( 2 )
 
 [node name="game" type="Spatial" parent="."]
-
-[node name="player" parent="game" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
 
 [node name="level_0_spatial" parent="game" instance=ExtResource( 3 )]

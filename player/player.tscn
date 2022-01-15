@@ -4,7 +4,7 @@
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 [ext_resource path="res://player/CameraOrbit.gd" type="Script" id=3]
 [ext_resource path="res://player/Hand.gd" type="Script" id=4]
-[ext_resource path="res://player/PlacementGhost.gd" type="Script" id=5]
+[ext_resource path="res://player/TowerGhost.gd" type="Script" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5, 1, 0.5 )
@@ -21,8 +21,8 @@ script = ExtResource( 2 )
 
 [node name="Sync" type="Node" parent="."]
 script = ExtResource( 1 )
-initial = PoolStringArray( "color" )
-unreliable_synced = PoolStringArray( "position" )
+unreliable_synced = PoolStringArray( "transform" )
+process_only_network_master = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
@@ -55,5 +55,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00775719, 2.57286, -0.03484
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="PlacementGhost" type="Spatial" parent="."]
+[node name="TowerGhost" type="Spatial" parent="."]
 script = ExtResource( 5 )

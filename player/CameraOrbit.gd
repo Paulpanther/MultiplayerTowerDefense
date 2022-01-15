@@ -15,16 +15,22 @@ onready var player = get_parent()
 func _ready():
 	#Seems to reduce the sensitivity, maybe because of the small window
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	$Camera.current = player.is_network_master()
 
 
 func _input(event):
+	if not player.is_network_master():
+		return
 	
 	if event is InputEventMouseMotion:
 		mouseDelta = event.relative
 		
 
 func _process(delta):
-	
+	if not player.is_network_master():
+		return
+		
 	var rot = Vector3(mouseDelta.y, mouseDelta.x, 0) * lookSensitivity * delta
 	
 	rotation_degrees.x += rot.x

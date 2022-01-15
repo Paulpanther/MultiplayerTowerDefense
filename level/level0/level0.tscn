@@ -48,7 +48,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.826159, -0.234319, -0.00308
 
 [node name="CollisionShape" type="CollisionShape" parent="Slope"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.826159, -0.234319, -0.00308568 )
-shape = SubResource( 4 )
 
 [node name="Slope2" type="StaticBody" parent="."]
 transform = Transform( -0.00373498, 0, 0.999993, 0.00862168, -0.999963, 3.2202e-05, 0.999956, 0.00862174, 0.00373484, 4.42875, 0.380761, 4.51485 )
@@ -59,4 +58,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.826159, -0.234319, -0.00308
 
 [node name="CollisionShape" type="CollisionShape" parent="Slope2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.826159, -0.234319, -0.00308568 )
-shape = SubResource( 4 )
