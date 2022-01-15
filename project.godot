@@ -38,6 +38,10 @@ Global="*res://Global.gd"
 
 enabled=PoolStringArray( "res://addons/multiplayer/plugin.cfg" )
 
+[global]
+
+main=false
+
 [input]
 
 ui_accept={

@@ -23,7 +23,12 @@ func _physics_process(delta):
 	
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
+		
 	
-	direction = transform.basis.z * direction.z + transform.basis.x * direction.x
 	
-	move_and_slide(direction * speed, Vector3.UP)
+	if is_on_floor():
+		direction = transform.basis.z * direction.z + transform.basis.x * direction.x
+	else:
+		direction = transform.basis.z * direction.z + transform.basis.x * direction.x + Vector3(0, -.6, 0)
+	
+	move_and_slide_with_snap(direction * speed, Vector3.DOWN, Vector3.UP)
