@@ -1,10 +1,11 @@
 extends Node
 
 var placed = false
+var tower = preload("res://tower/Tower.tscn")
 
-func set_scene_if_not_present(scene: PackedScene):
+func set_scene_if_not_present():
 	if not placed:
-		placed = scene.instance()
+		placed = tower.instance()
 		placed.set_ghost(true)
 		add_child(placed)
 
