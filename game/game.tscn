@@ -7,14 +7,12 @@
 [node name="MultiplayerTowerDefense" type="Node"]
 script = ExtResource( 1 )
 ip = "gamedev.paulmethfessel.com"
+auto_connect = false
 player_scene = ExtResource( 2 )
 
 [node name="game" type="Spatial" parent="."]
 
 [node name="player" parent="game" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98873, 0 )
-
-[node name="Camera" type="Camera" parent="game/player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20613, 5.98252 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
 
 [node name="level_0_spatial" parent="game" instance=ExtResource( 3 )]
