@@ -14,7 +14,14 @@ var format_feedback_str = "Rocks left: %s."
 
 func _ready():
 	respawn_timer = get_tree().create_timer(0.0)
-
+	
+func hit(hand):
+	if Input.is_action_just_pressed("mouse_click") and available:
+		capacity_left -= 1
+		
+		#remove later
+		var feedback_str = format_feedback_str % capacity_left
+		print(feedback_str)
 	
 func respawn():
 	available = true
@@ -32,13 +39,5 @@ func despawn():
 			respawn()
 
 func _process(delta):
-	if Input.is_action_just_pressed("collect") and available:
-		capacity_left -= 1
-		
-		#remove later
-		var feedback_str = format_feedback_str % capacity_left
-		print(feedback_str)
-		
-		
 	if capacity_left == 0:
 		despawn()

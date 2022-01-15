@@ -48,7 +48,7 @@ script = ExtResource( 4 )
 [node name="RayCast" type="RayCast" parent="Hand"]
 enabled = true
 cast_to = Vector3( 0, 5, 0 )
-collision_mask = 2
+collision_mask = 6
 
 [node name="MeshInstance" type="MeshInstance" parent="Hand"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00775719, 2.57286, -0.0348471 )
