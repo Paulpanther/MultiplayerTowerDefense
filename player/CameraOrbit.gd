@@ -35,13 +35,13 @@ func _process(delta):
 	mouseDelta = Vector2()
 
 	# TBD: Change perspective
-	"""
-	var direction = Vector3.ZERO
+	
+
 	
 	if Input.is_action_pressed("camera_left") and !isLeft:
-		#global_translate(Vector3(1, 0, 0))
+		translate(Vector3(2, 0, 0))
 		isLeft = true
 	if Input.is_action_pressed("camera_right") and isLeft:
-		#global_translate(transform(Vector3(-1, 0, 0), )
+		translate(Vector3(-2, 0, 0))
 		isLeft = false
-"""
+

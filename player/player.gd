@@ -20,6 +20,7 @@ func _physics_process(delta):
 		direction.x += 1
 	if Input.is_action_pressed("move_right"):
 		direction.x -= 1
+
 	
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
@@ -32,3 +33,4 @@ func _physics_process(delta):
 		direction = transform.basis.z * direction.z + transform.basis.x * direction.x + Vector3(0, -.6, 0)
 	
 	move_and_slide_with_snap(direction * speed, Vector3.DOWN, Vector3.UP)
+

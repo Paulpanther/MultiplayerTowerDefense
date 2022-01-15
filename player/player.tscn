@@ -51,7 +51,7 @@ cast_to = Vector3( 0, 5, 0 )
 collision_mask = 2
 
 [node name="MeshInstance" type="MeshInstance" parent="Hand"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.511, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00775719, 2.57286, -0.0348471 )
 mesh = SubResource( 3 )
 material/0 = null
 
