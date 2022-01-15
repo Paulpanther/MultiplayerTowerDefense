@@ -30,13 +30,13 @@ config/name="MultiplayerTemplate"
 run/main_scene="res://game/game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/multiplayer/plugin.cfg" )
-
-[global]
-
-main=false
 
 [input]
 
