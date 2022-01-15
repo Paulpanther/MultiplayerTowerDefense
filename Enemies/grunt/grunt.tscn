@@ -5,10 +5,10 @@
 
 [sub_resource type="CylinderMesh" id=1]
 
-[node name="EnemyPF" type="PathFollow"]
+[node name="EnemyPF" type="PathFollow" groups=["enemy"]]
 loop = false
 script = ExtResource( 1 )
-speed = 15
+speed = 1
 maxHP = 50
 damage = 1
 
