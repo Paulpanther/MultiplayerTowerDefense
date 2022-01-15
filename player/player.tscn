@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://addons/multiplayer/Sync.gd" type="Script" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
@@ -11,6 +11,10 @@ extents = Vector3( 0.5, 1, 0.5 )
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 1, 2, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+albedo_color = Color( 0.0627451, 0.941176, 0.560784, 0.286275 )
 
 [sub_resource type="CubeMesh" id=3]
 size = Vector3( 0.1, 5, 0.1 )
@@ -32,7 +36,7 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = SubResource( 2 )
 skeleton = NodePath("")
-material/0 = null
+material/0 = SubResource( 4 )
 
 [node name="CameraOrbital" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )

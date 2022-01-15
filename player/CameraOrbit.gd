@@ -36,7 +36,10 @@ func _process(delta):
 	
 	rotation_degrees.x += rot.x
 	rotation_degrees.x = clamp(rotation_degrees.x, minLookAngle, maxLookAngle)
+	
 	hand.rotation_degrees.x += rot.x
+	hand.rotation_degrees.x = clamp(hand.rotation_degrees.x, minLookAngle + 90, maxLookAngle + 90)
+	#print(hand.rotation_degrees.x)
 	
 	player.rotation_degrees.y -= rot.y
 	
