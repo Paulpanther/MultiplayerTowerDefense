@@ -15,7 +15,7 @@ func _process(delta):
 
 	if ray.is_colliding():
 		ray.get_collider().hit(self)
-	
+		
 	if Input.is_action_just_pressed("place_tower_mode"):
 		tower_place_mode = not tower_place_mode
 		

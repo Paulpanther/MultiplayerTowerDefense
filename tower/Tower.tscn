@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://tower/gun_turret/gun_turret.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tower/Tower.tres" type="Material" id=2]
 [ext_resource path="res://tower/Tower.gd" type="Script" id=3]
 
@@ -55,3 +56,5 @@ speed_scale = 4.0
 explosiveness = 1.0
 process_material = SubResource( 3 )
 draw_pass_1 = SubResource( 4 )
+
+[node name="gun_turret" parent="." instance=ExtResource( 1 )]

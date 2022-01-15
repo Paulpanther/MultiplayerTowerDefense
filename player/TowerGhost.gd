@@ -5,6 +5,7 @@ var tower = preload("res://tower/Tower.tscn")
 
 func set_scene_if_not_present():
 	if not placed:
+		print("ooga booga")
 		placed = tower.instance()
 		placed.set_ghost(true)
 		add_child(placed)
