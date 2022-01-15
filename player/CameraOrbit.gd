@@ -10,6 +10,7 @@ var isLeft : bool = true
 var mouseDelta : Vector2 = Vector2()
 
 onready var player = get_parent()
+onready var hand = player.get_node("Hand")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,6 +36,7 @@ func _process(delta):
 	
 	rotation_degrees.x += rot.x
 	rotation_degrees.x = clamp(rotation_degrees.x, minLookAngle, maxLookAngle)
+	hand.rotation_degrees.x += rot.x
 	
 	player.rotation_degrees.y -= rot.y
 	
