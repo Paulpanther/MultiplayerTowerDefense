@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/multiplayer/Sync.gd" type="Script" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 
-[node name="player" type="Node2D"]
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.5, 1, 0.5 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 1, 2, 1 )
+
+[node name="player" type="KinematicBody"]
 script = ExtResource( 2 )
 
 [node name="Sync" type="Node" parent="."]
@@ -12,11 +18,12 @@ initial = PoolStringArray( "color" )
 unreliable_synced = PoolStringArray( "position" )
 process_only_network_master = true
 
-[node name="token" type="ColorRect" parent="."]
-margin_left = -19.0
-margin_top = -19.0
-margin_right = 21.0
-margin_bottom = 21.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+mesh = SubResource( 2 )
+skeleton = NodePath("")
+material/0 = null
