@@ -16,5 +16,4 @@ func _process(delta):
 		self.offset += delta * speed
 		
 	if $RayCast.is_colliding():
-		print("Found ground")
 		transform.origin.y = $RayCast.get_collision_point().y

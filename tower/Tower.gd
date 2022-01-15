@@ -1,6 +1,6 @@
 extends Spatial
 
-export var shoot_delay = 2000
+export var shoot_delay = 200
 
 var last_shoot = 0
 
