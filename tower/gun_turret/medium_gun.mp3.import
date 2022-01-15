@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/medium_gun.mp3-e0b418eb203b975efc72729587cdc0ed.mp3str"
+
+[deps]
+
+source_file="res://tower/gun_turret/medium_gun.mp3"
+dest_files=[ "res://.import/medium_gun.mp3-e0b418eb203b975efc72729587cdc0ed.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
