@@ -14,7 +14,4 @@ player_scene = ExtResource( 2 )
 [node name="player" parent="game" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98873, 0 )
 
-[node name="Camera" type="Camera" parent="game/player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20613, 5.98252 )
-
 [node name="level_0_spatial" parent="game" instance=ExtResource( 3 )]
