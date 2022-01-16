@@ -9,7 +9,7 @@ points = PoolVector3Array( 1, 1, 0, 1, -1, 0, 0.995106, 1, -0.0980814, 0.995106,
 
 [node name="rock" type="Spatial"]
 
-[node name="rock" type="StaticBody" parent="."]
+[node name="rock" type="StaticBody" parent="." groups=["rock"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5.53555 )
 collision_layer = 13
 script = ExtResource( 1 )
