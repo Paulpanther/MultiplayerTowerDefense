@@ -20,7 +20,7 @@ func _process(delta):
 		
 	var unit_speed = unit_offset/(offset+0.01) * speed
 	if self.unit_offset + (delta * unit_speed) >= 0.99:
-		Global.baseHealth -= 1
+		Global.rpc("remove_base_health", 1)
 		queue_free()
 	else:
 		self.offset += delta * speed

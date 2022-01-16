@@ -45,3 +45,12 @@ func can_place_tower():
 
 func can_place_energy_factory():
 	return Chips >= energy_factory_chips_cost
+
+remotesync func add_chips(chips):
+	self.Chips += chips
+
+remotesync func add_energy(energy):
+	self.Energy += energy
+
+remotesync func remove_base_health(health):
+	self.baseHealth -= health
