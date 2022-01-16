@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://addons/multiplayer/Sync.gd" type="Script" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 [ext_resource path="res://player/CameraOrbit.gd" type="Script" id=3]
+[ext_resource path="res://player/Crosshair.gd" type="Script" id=4]
 [ext_resource path="res://player/PlacementGhost.gd" type="Script" id=5]
 [ext_resource path="res://tower/Tower.tscn" type="PackedScene" id=6]
 [ext_resource path="res://player/AllGhosts.gd" type="Script" id=7]
@@ -57,6 +58,10 @@ transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0
 enabled = true
 cast_to = Vector3( 0, 0, 20 )
 collision_mask = 10
+
+[node name="Crosshair" type="Sprite3D" parent="CameraOrbital/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, -5.26073 )
+script = ExtResource( 4 )
 
 [node name="CollisionIndicator" type="MeshInstance" parent="."]
 mesh = SubResource( 5 )

@@ -44,7 +44,7 @@ func _interpolate_rotation(delta):
 	var final = transform.looking_at(following_enemy.transform.origin, Vector3.UP)
 	var final_quat = Quat(final.basis)
 	var to_quat = Quat(transform.basis).slerp(final_quat, delta * rotation_speed)
-	transform.basis = Basis(to_quat)	
+	transform.basis = Basis(to_quat)
 
 func _shoot():
 	var enemy = _get_nearest_enemy()

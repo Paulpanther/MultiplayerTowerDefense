@@ -15,12 +15,16 @@ onready var collisionIndicator = player.get_node("CollisionIndicator")
 
 var collision_point
 var collision_group
+var collider
 
 func get_collision_point():
 	return collision_point
 	
 func get_collision_group():
 	return collision_group
+
+func get_collider():
+	return collider
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -60,12 +64,17 @@ func _process(delta):
 		isLeft = false
 	
 	#Ray Collision
-	if $Camera/RayCast.is_colliding():
-		collisionIndicator.show()
+	if $Camera/RayCast.is_colliding() and $Camera/RayCast.get_collider() != null:
+		#collisionIndicator.show()
 		collision_point = $Camera/RayCast.get_collision_point()
 		collisionIndicator.global_transform.origin = collision_point
-		collision_group = $Camera/RayCast.get_collider().get_groups()[0]
+		collider = $Camera/RayCast.get_collider()
+		if collider == null:
+			collision_group = null
+			return
+		collision_group = collider.get_groups()[0]
 	else:
 		collision_point = null
 		collision_group = null
+		collider = null
 		collisionIndicator.hide()
