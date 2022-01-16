@@ -2,6 +2,7 @@ extends Spatial
 
 export var shoot_delay = 200
 export var rotation_speed = 2
+export var enemy_damage = 0.1
 
 var last_shoot = 0
 var last_side_left = false
@@ -45,6 +46,7 @@ func _shoot():
 	$shoot.play()
 	
 	last_side_left = not last_side_left
+	following_enemy.take_damage(enemy_damage)
 	
 
 func _get_nearest_enemy():
