@@ -69,6 +69,9 @@ func _process(delta):
 		collision_point = $Camera/RayCast.get_collision_point()
 		collisionIndicator.global_transform.origin = collision_point
 		collider = $Camera/RayCast.get_collider()
+		if collider == null:
+			collision_group = null
+			return
 		collision_group = collider.get_groups()[0]
 	else:
 		collision_point = null

@@ -37,6 +37,7 @@ shape = SubResource( 4 )
 
 [node name="Sync" type="Node" parent="."]
 script = ExtResource( 1 )
+synced = PoolStringArray( "remainingHP" )
 unreliable_synced = PoolStringArray( "transform" )
 process_only_network_master = true
 

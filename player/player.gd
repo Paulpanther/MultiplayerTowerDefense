@@ -41,6 +41,6 @@ func _process_melee():
 		if Input.is_action_pressed("melee"):
 			var time = OS.get_system_time_msecs()
 			if time - last_melee > melee_timeout:
-				enemy.take_damage(melee_damage)
+				enemy.rpc("take_damage", melee_damage)
 				last_melee = time
 
