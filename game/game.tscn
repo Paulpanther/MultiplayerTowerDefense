@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://addons/multiplayer/NetworkGame.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://game/QuitButton.gd" type="Script" id=9]
 [ext_resource path="res://UI/Assets/lightning_bolt.webp" type="Texture" id=10]
 [ext_resource path="res://UI/EnergyCounter.gd" type="Script" id=11]
+[ext_resource path="res://UI/Assets/Ubuntu-Medium.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://UI/Timer.gd" type="Script" id=13]
 
 [sub_resource type="Theme" id=1]
 
@@ -25,6 +27,21 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+font_data = ExtResource( 12 )
 
 [node name="MultiplayerTowerDefense" type="Node"]
 script = ExtResource( 1 )
@@ -44,10 +61,10 @@ anchor_left = 0.001
 anchor_top = 0.002
 anchor_right = 0.001
 anchor_bottom = 0.002
-margin_left = -0.024
-margin_top = -0.2
-margin_right = 1920.0
-margin_bottom = 1080.0
+margin_left = 3.976
+margin_top = -1.2
+margin_right = 1028.98
+margin_bottom = 602.8
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -56,10 +73,9 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1890.02
-margin_top = 3.0
-margin_right = -1436.02
-margin_bottom = -1008.2
+margin_left = -996.0
+margin_right = -532.0
+margin_bottom = -524.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -67,17 +83,17 @@ __meta__ = {
 [node name="Panel" type="Panel" parent="UI/BaseHP"]
 margin_left = 8.0
 margin_top = 12.0
-margin_right = 448.0
+margin_right = 397.0
 margin_bottom = 52.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="UI/BaseHP"]
-margin_left = 393.0
-margin_top = 27.0
-margin_right = 442.0
-margin_bottom = 58.0
+margin_left = 338.0
+margin_top = 25.0
+margin_right = 387.0
+margin_bottom = 56.0
 text = "BaseHP
 "
 align = 1
@@ -90,7 +106,7 @@ __meta__ = {
 modulate = Color( 0.109804, 0.113725, 0.113725, 1 )
 margin_left = 15.0
 margin_top = 19.0
-margin_right = 388.0
+margin_right = 330.0
 margin_bottom = 46.0
 theme = SubResource( 1 )
 custom_styles/panel = SubResource( 2 )
@@ -99,10 +115,10 @@ __meta__ = {
 }
 
 [node name="HPBar" type="PanelContainer" parent="UI/BaseHP"]
-margin_left = 16.0
-margin_top = 20.0
-margin_right = 387.0
-margin_bottom = 45.0
+margin_left = 13.0
+margin_top = 19.0
+margin_right = 328.0
+margin_bottom = 44.0
 custom_styles/panel = SubResource( 3 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -167,10 +183,14 @@ __meta__ = {
 }
 
 [node name="Quit" type="Button" parent="UI/QuitButton"]
-margin_left = 695.0
-margin_top = 496.0
-margin_right = 777.0
-margin_bottom = 536.0
+anchor_left = -28.176
+anchor_top = -13.255
+anchor_right = -28.176
+anchor_bottom = -13.255
+margin_left = 166.04
+margin_top = -79.8
+margin_right = 248.04
+margin_bottom = -39.8
 text = "Quit Game"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -222,6 +242,82 @@ margin_right = 59.0
 margin_bottom = 29.84
 texture = ExtResource( 10 )
 expand = true
+
+[node name="Waves" type="Control" parent="UI"]
+margin_left = 551.0
+margin_top = 19.0
+margin_right = 1003.0
+margin_bottom = 89.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="UI/Waves"]
+margin_left = 200.0
+margin_top = -11.0
+margin_right = 462.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="UI/Waves/Panel"]
+margin_left = 8.0
+margin_top = 5.0
+margin_right = 256.0
+margin_bottom = 54.0
+custom_styles/panel = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Waves/Panel/Panel"]
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 253.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 5 )
+text = "Wave"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Control" parent="UI"]
+margin_left = 954.0
+margin_top = -50.0
+margin_right = 1083.0
+margin_bottom = -5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="UI/Timer"]
+margin_left = -512.0
+margin_top = 59.0
+margin_right = -321.0
+margin_bottom = 116.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="UI/Timer/Panel"]
+margin_left = 9.0
+margin_top = 6.0
+margin_right = 183.0
+margin_bottom = 51.0
+custom_styles/panel = SubResource( 6 )
+
+[node name="Time" type="Label" parent="UI/Timer/Panel/Panel"]
+margin_left = 25.0
+margin_top = -7.0
+margin_right = 150.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 7 )
+text = "00:00"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Menu" type="Control" parent="."]
 visible = false
