@@ -16,7 +16,7 @@ speed = 12
 maxHP = 4
 damage = 1
 
-[node name="KinematicBody" type="KinematicBody" parent="."]
+[node name="KinematicBody" type="KinematicBody" parent="." groups=["enemy"]]
 collision_layer = 0
 collision_mask = 0
 
