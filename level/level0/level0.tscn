@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://level/level0/levelController.gd" type="Script" id=1]
 [ext_resource path="res://level/level0/assets/map_ice.obj" type="ArrayMesh" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://level/level0/assets/enemy_path_0.tres" type="Curve3D" id=4]
 [ext_resource path="res://level/level0/assets/seed_vault.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://level/Ground.gd" type="Script" id=6]
-[ext_resource path="res://level/level0/assets/Texture.png" type="Texture" id=7]
 [ext_resource path="res://Enemies/runner/runner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://addons/multiplayer/Sync.gd" type="Script" id=9]
 

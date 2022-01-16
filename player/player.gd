@@ -8,6 +8,21 @@ onready var camera = $CameraOrbital
 
 var last_melee = OS.get_system_time_msecs()
 
+onready var anim_player = $Character/Armature/player_animations
+
+func animation_select(dir):
+	if dir.z > 0:
+		anim_player.current_animation = "RunForward-loop"
+	elif dir.z < 0:
+		anim_player.current_animation = "RunBackward-loop"
+	elif dir.x > 0:
+		anim_player.current_animation = "RunRight-loop"
+	elif dir.x < 0:
+		anim_player.current_animation = "RunLeft-loop"
+	else:
+		anim_player.current_animation = "CombatIdle-loop"
+	pass
+
 func _physics_process(delta):
 	var direction = Vector3.ZERO
 	
@@ -20,8 +35,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_right"):
 		direction.x -= 1
 	
+	
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
+	
+	animation_select(direction)
 	
 	if is_on_floor():
 		direction = transform.basis.z * direction.z + transform.basis.x * direction.x

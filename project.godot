@@ -45,6 +45,7 @@ enabled=PoolStringArray( "res://addons/multiplayer/plugin.cfg" )
 [global]
 
 main=false
+sdgfi=false
 
 [input]
 
