@@ -59,12 +59,13 @@ func _ready():
 
 
 func _physics_process(delta):
-	Global.rpc("update_state_timer", Global.stateTimer + delta)
+	
+	Global.stateTimer += delta
 	match levelState:
 		STATE.start:
 			if Global.stateTimer > Global.startDelay:
 				levelState = STATE.wave
-				Global.rpc("update_state_timer", 0)
+				Global.stateTimer = 0
 		STATE.wave:
 			updateWave()
 			if len(Global.waves[currentWave]) - 1 <= lastSpawn:
@@ -75,13 +76,13 @@ func _physics_process(delta):
 					if len(get_tree().get_nodes_in_group("enemy")) <= 0:
 						lastSpawn = 0
 						levelState = STATE.wait
-						Global.rpc("update_state_timer", 0)
+						Global.stateTimer = 0
 						currentWave += 1
 						print("wait")
 		STATE.wait:
 			print(Global.stateTimer)
 			if Global.maxWaitTime <= Global.stateTimer:
-				Global.rpc("update_state_timer", 0)
+				Global.stateTimer = 0.0
 				levelState = STATE.wave
 			pass
 		STATE.end:

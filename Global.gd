@@ -29,12 +29,6 @@ export var startDelay = 5
 export var stateTimer = 0
 export var maxWaitTime = 3 #Seconds
 
-remotesync func update_start_delay(v):
-	startDelay = v
-
-remotesync func update_state_timer(v):
-	stateTimer = v
-
 export var waves = [
 	[
 		[0.0, ENEMIES.grunt],

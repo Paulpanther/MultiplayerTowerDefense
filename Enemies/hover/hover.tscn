@@ -4,10 +4,11 @@
 [ext_resource path="res://Enemies/enemy.gd" type="Script" id=2]
 [ext_resource path="res://Enemies/enemy_ui/enemy_ui.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/hover/walker_no_legs.obj" type="ArrayMesh" id=4]
-[ext_resource path="res://Enemies/hover/hover_texture.png" type="Texture" id=5]
 
 [sub_resource type="SpatialMaterial" id=3]
-albedo_texture = ExtResource( 5 )
+
+[sub_resource type="ConvexPolygonShape" id=4]
+points = PoolVector3Array( 0.261784, 2.95963, 2.4497, -0.139622, 3.17902, -2.45801, -0.133718, 3.33542, -2.44865, 4.92503, 3.2331, -1.1099, -0.64644, 5.08843, 1.91132, 0.882301, 5.07037, -1.85749, 3.66471, 4.47598, 1.06733, -1.90694, 4.4889, -1.98903, -1.91724, 3.25593, 1.86526, -0.0425302, 2.57827, -1.8913, 4.8356, 3.1714, 1.02518, -0.0409778, 2.57962, 1.99067, -1.89724, 3.2596, -1.90643, -1.75939, 5.10772, 0.397607, 2.15316, 5.14543, -0.0614443, 2.00903, 4.70437, 1.82626, 4.01277, 4.54359, -0.135362, -1.90629, 4.56564, 1.93624, -1.94205, 3.0178, -0.376763, 2.01677, 4.4862, -1.97973, -0.648892, 5.08986, -1.88807, -0.0503985, 3.41431, 2.53949, 3.67148, 4.47782, -1.04453, 0.804329, 5.07558, 1.89164, 4.84458, 3.2331, 1.13085, -1.62825, 5.16251, -0.365929, 2.01146, 4.93586, -1.65714, 4.13461, 3.06213, 0.0870729, 2.08492, 4.93118, 1.59953, 2.15993, 4.47761, 1.90126, -0.135207, 2.71885, -2.21986, 2.02013, 3.33414, -1.99163, 0.189262, 5.08793, -1.96086, -1.51943, 3.02723, 1.93537, 0.182185, 3.1864, 2.53228, -0.218363, 2.94655, 2.48403, 1.47951, 5.14703, 0.836682, -1.51982, 4.95011, -1.68095, -1.58872, 3.02929, -1.82939, 0.274487, 2.89422, -2.32249, 4.00402, 4.5413, 0.161479, 4.92503, 3.2331, 1.05087, 4.65348, 3.13538, -0.650268, -1.41711, 5.01756, 1.61376, 0.122896, 2.66728, 2.19932, 1.47962, 5.15057, -0.813494, -1.93859, 3.01868, 0.400099, -1.62126, 5.15958, 0.390804, 0.183834, 3.41624, -2.42811, -1.91199, 4.56682, -1.91507, -1.90054, 3.33573, 1.93301, -1.89852, 3.56662, -1.9839, 0.11868, 2.66343, -2.10478, -1.9129, 4.64402, 1.63127, -0.110228, 2.58561, 1.90602, 2.00328, 5.14521, 0.386591, -0.123061, 2.65174, 2.22701, -0.297969, 3.10024, 2.48677, 0.424784, 5.15512, 0.842005, -1.74783, 5.10327, -0.448076, -0.0386783, 5.08872, -1.96216, -0.0568437, 3.41233, -2.44931, 0.263167, 3.26509, -2.42246, 4.77788, 3.18334, -1.06087 )
 
 [sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("Viewport")
@@ -15,18 +16,22 @@ viewport_path = NodePath("Viewport")
 [node name="EnemyPF" type="PathFollow" groups=["enemy"]]
 loop = false
 script = ExtResource( 2 )
-speed = 15
-maxHP = 50
-damage = 1
+speed = 5
+maxHP = 70
+damage = 5
 
-[node name="KinematicBody" type="KinematicBody" parent="."]
-collision_layer = 0
+[node name="KinematicBody" type="KinematicBody" parent="." groups=["enemy_collider"]]
+collision_layer = 8
 collision_mask = 0
 
 [node name="MeshInstance" type="MeshInstance" parent="KinematicBody"]
 transform = Transform( -1, 0, -0.000209483, 0, 1, 0, 0.000209483, 0, -1, 0, 0.999896, 0 )
 mesh = ExtResource( 4 )
 material/0 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( -1, 0, -0.000209483, 0, 1, 0, 0.000209483, 0, -1, 0, 0.999896, 0 )
+shape = SubResource( 4 )
 
 [node name="Sync" type="Node" parent="."]
 script = ExtResource( 1 )
