@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/multiplayer/NetworkGame.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://level/level0/level0.tscn" type="PackedScene" id=3]
 [ext_resource path="res://resources/rock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/LoseBaseHP.gd" type="Script" id=5]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.054902, 0.572549, 0.172549, 1 )
 
 [node name="MultiplayerTowerDefense" type="Node"]
 script = ExtResource( 1 )
@@ -17,3 +25,57 @@ player_scene = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0050354, 0.0155754, -0.00586605 )
 
 [node name="rock" parent="game" instance=ExtResource( 4 )]
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.02
+anchor_top = 0.03
+anchor_right = 0.02
+anchor_bottom = 0.03
+margin_left = -0.480001
+margin_right = 19.52
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LostHP" type="PanelContainer" parent="Control"]
+modulate = Color( 0.180392, 0.203922, 0.196078, 1 )
+anchor_left = 0.75
+anchor_top = 0.818
+anchor_right = 0.75
+anchor_bottom = 0.818
+margin_left = -9.53674e-07
+margin_top = 0.00399971
+margin_right = 368.0
+margin_bottom = 32.004
+theme = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HPBar" type="PanelContainer" parent="Control"]
+anchor_left = 0.768
+anchor_top = 0.831
+anchor_right = 0.768
+anchor_bottom = 0.831
+margin_left = 1.64
+margin_top = 1.718
+margin_right = 365.64
+margin_bottom = 29.718
+custom_styles/panel = SubResource( 3 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = 393.0
+margin_top = 27.0
+margin_right = 451.0
+margin_bottom = 102.0
+text = "BaseHP
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
