@@ -16,6 +16,8 @@ enum ENEMIES{
 export(ENEMIES) var enemies = ENEMIES.grunt
 
 #LEVELS
+export var startDelay = 30
+export var stateTimer = 0
 export var maxWaitTime = 15 #Seconds
 
 export var waves = [
