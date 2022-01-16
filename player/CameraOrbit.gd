@@ -74,5 +74,3 @@ func _process(delta):
 		collision_point = null
 		collision_group = null
 		collisionIndicator.hide()
-	#print(collision_group)
-	
