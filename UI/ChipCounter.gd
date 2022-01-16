@@ -1,4 +1,4 @@
 extends Label
 
 func _process(delta):
-	text = str(Global.Chips)
+	text = str(Global.Energy)

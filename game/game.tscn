@@ -1,12 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/multiplayer/NetworkGame.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://level/level0/level0.tscn" type="PackedScene" id=3]
 [ext_resource path="res://resources/rock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/LoseBaseHP.gd" type="Script" id=5]
+[ext_resource path="res://game/Menu.gd" type="Script" id=6]
 [ext_resource path="res://UI/ChipCounter.gd" type="Script" id=7]
-[ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://assets/chip.png" type="Texture" id=8]
+[ext_resource path="res://game/QuitButton.gd" type="Script" id=9]
+[ext_resource path="res://UI/Assets/lightning_bolt.webp" type="Texture" id=10]
 
 [sub_resource type="Theme" id=1]
 
@@ -14,6 +17,13 @@
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.054902, 0.572549, 0.172549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.25098, 0.231373, 0.231373, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="MultiplayerTowerDefense" type="Node"]
 script = ExtResource( 1 )
@@ -29,13 +39,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0050354, 0.0155754, -0.0058
 [node name="rock" parent="game" instance=ExtResource( 4 )]
 
 [node name="UI" type="Control" parent="."]
-anchor_left = 0.02
-anchor_top = 0.03
-anchor_right = 0.02
-anchor_bottom = 0.03
-margin_left = 0.520002
-margin_right = 20.52
-margin_bottom = 22.0
+anchor_left = 0.001
+anchor_top = 0.002
+anchor_right = 0.001
+anchor_bottom = 0.002
+margin_left = -0.024
+margin_top = -0.2
+margin_right = 1920.0
+margin_bottom = 1080.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -44,9 +55,10 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_right = 487.0
-margin_bottom = 40.0
+margin_left = -1890.02
+margin_top = 3.0
+margin_right = -1436.02
+margin_bottom = -1008.2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -74,7 +86,7 @@ __meta__ = {
 }
 
 [node name="LostHP" type="PanelContainer" parent="UI/BaseHP"]
-modulate = Color( 0.180392, 0.203922, 0.196078, 1 )
+modulate = Color( 0.109804, 0.113725, 0.113725, 1 )
 margin_left = 15.0
 margin_top = 19.0
 margin_right = 388.0
@@ -96,23 +108,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="UI"]
+[node name="CounterChip" type="Control" parent="UI"]
 margin_left = 40.0
-margin_top = 51.0
+margin_top = 53.0
 margin_right = 171.0
-margin_bottom = 107.0
+margin_bottom = 109.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Panel" type="Panel" parent="UI/Control"]
+[node name="Panel" type="Panel" parent="UI/CounterChip"]
 margin_left = -2.0
 margin_top = 6.0
 margin_right = 62.0
 margin_bottom = 42.0
 
-[node name="ChipCounter" type="Label" parent="UI/Control"]
-margin_left = 9.0
-margin_top = 18.0
-margin_right = 64.0
-margin_bottom = 62.0
+[node name="Panel2" type="Panel" parent="UI/CounterChip"]
+margin_left = 3.0
+margin_top = 11.0
+margin_right = 28.0
+margin_bottom = 36.0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChipCounter" type="Label" parent="UI/CounterChip"]
+margin_left = 7.0
+margin_top = 17.0
+margin_right = 62.0
+margin_bottom = 61.0
 text = "0
 "
 script = ExtResource( 7 )
@@ -120,10 +145,138 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="UI/Control"]
-margin_left = 27.0
-margin_top = 10.0
-margin_right = 56.0
-margin_bottom = 37.0
+[node name="TextureRect" type="TextureRect" parent="UI/CounterChip"]
+anchor_top = 0.179
+anchor_bottom = 0.179
+margin_left = 29.0
+margin_top = 0.976
+margin_right = 58.0
+margin_bottom = 27.976
 texture = ExtResource( 8 )
 expand = true
+
+[node name="QuitButton" type="Control" parent="UI"]
+margin_left = 1126.0
+margin_top = 528.0
+margin_right = 1166.0
+margin_bottom = 568.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="UI/QuitButton"]
+margin_left = 695.0
+margin_top = 496.0
+margin_right = 777.0
+margin_bottom = 536.0
+text = "Quit Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Counter Energy" type="Control" parent="UI"]
+margin_left = 40.0
+margin_top = 97.0
+margin_right = 80.0
+margin_bottom = 137.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="UI/Counter Energy"]
+margin_left = -2.0
+margin_top = 6.0
+margin_right = 62.0
+margin_bottom = 42.0
+
+[node name="Panel2" type="Panel" parent="UI/Counter Energy"]
+margin_left = 3.0
+margin_top = 12.0
+margin_right = 27.0
+margin_bottom = 36.0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnergyCounter" type="Label" parent="UI/Counter Energy"]
+margin_left = 7.0
+margin_top = 17.0
+margin_right = 62.0
+margin_bottom = 60.0
+text = "0
+"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Counter Energy"]
+anchor_top = 0.179
+anchor_bottom = 0.179
+margin_left = 33.0
+margin_top = 2.84
+margin_right = 59.0
+margin_bottom = 29.84
+texture = ExtResource( 10 )
+expand = true
+
+[node name="Menu" type="Control" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Menu"]
+margin_right = 1925.0
+margin_bottom = 1085.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -293.0
+margin_top = -214.5
+margin_right = 299.0
+margin_bottom = 290.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
+margin_right = 592.0
+margin_bottom = 165.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+text = "Start"
+
+[node name="ControlsButton" type="Button" parent="Menu/VBoxContainer"]
+margin_top = 169.0
+margin_right = 592.0
+margin_bottom = 335.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+text = "Controls"
+
+[node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
+margin_top = 339.0
+margin_right = 592.0
+margin_bottom = 505.0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+text = "Quit"
+
+[connection signal="pressed" from="UI/QuitButton/Quit" to="UI/QuitButton" method="_on_Quit_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="Menu" method="_on_StartButton_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/ControlsButton" to="Menu" method="_on_ControlsButton_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="Menu" method="_on_QuitButton_pressed"]
