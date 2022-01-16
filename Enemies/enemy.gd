@@ -26,8 +26,9 @@ func _process(delta):
 		transform.origin.y = $RayCast.get_collision_point().y
 
 func get_health():
-	return remainingHP/maxHP
+	return remainingHP * 1.0 / maxHP
 
 func take_damage(damage):
 	remainingHP -= damage
+	print(remainingHP)
 	

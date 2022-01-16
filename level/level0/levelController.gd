@@ -67,7 +67,6 @@ func _physics_process(delta):
 				levelState = STATE.wave
 				Global.stateTimer = 0
 		STATE.wave:
-			print(lastSpawn)
 			updateWave()
 			if len(Global.waves[currentWave]) - 1 <= lastSpawn:
 				if len(Global.waves) - 1 <= currentWave:

@@ -15,6 +15,7 @@ extents = Vector3( 0.5, 1, 0.5 )
 size = Vector3( 1, 2, 1 )
 
 [sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
 albedo_color = Color( 0.0627451, 0.941176, 0.560784, 0.286275 )
 
 [sub_resource type="SphereMesh" id=5]
