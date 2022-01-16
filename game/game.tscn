@@ -5,7 +5,7 @@
 [ext_resource path="res://level/level0/level0.tscn" type="PackedScene" id=3]
 [ext_resource path="res://resources/rock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/LoseBaseHP.gd" type="Script" id=5]
-[ext_resource path="res://game/Menu.gd" type="Script" id=6]
+[ext_resource path="res://UI/WaveCounter.gd" type="Script" id=6]
 [ext_resource path="res://UI/ChipCounter.gd" type="Script" id=7]
 [ext_resource path="res://assets/chip.png" type="Texture" id=8]
 [ext_resource path="res://game/QuitButton.gd" type="Script" id=9]
@@ -57,33 +57,26 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0050354, 0.0155754, -0.0058
 [node name="rock" parent="game" instance=ExtResource( 4 )]
 
 [node name="UI" type="Control" parent="."]
-anchor_left = 0.001
-anchor_top = 0.002
-anchor_right = 0.001
-anchor_bottom = 0.002
-margin_left = 3.976
-margin_top = -1.2
-margin_right = 1028.98
-margin_bottom = 602.8
+margin_right = 1022.0
+margin_bottom = 604.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BaseHP" type="Control" parent="UI"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -996.0
-margin_right = -532.0
-margin_bottom = -524.0
+margin_left = 26.0
+margin_right = 490.0
+margin_bottom = 80.0
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Panel" type="Panel" parent="UI/BaseHP"]
-margin_left = 8.0
+anchor_left = -0.056
+anchor_right = -0.056
+margin_left = 33.984
 margin_top = 12.0
-margin_right = 397.0
+margin_right = 422.984
 margin_bottom = 52.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -115,10 +108,10 @@ __meta__ = {
 }
 
 [node name="HPBar" type="PanelContainer" parent="UI/BaseHP"]
-margin_left = 13.0
-margin_top = 19.0
-margin_right = 328.0
-margin_bottom = 44.0
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 329.0
+margin_bottom = 45.0
 custom_styles/panel = SubResource( 3 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -173,6 +166,7 @@ texture = ExtResource( 8 )
 expand = true
 
 [node name="QuitButton" type="Control" parent="UI"]
+visible = false
 margin_left = 1126.0
 margin_top = 528.0
 margin_right = 1166.0
@@ -244,9 +238,11 @@ texture = ExtResource( 10 )
 expand = true
 
 [node name="Waves" type="Control" parent="UI"]
-margin_left = 551.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -471.0
 margin_top = 19.0
-margin_right = 1003.0
+margin_right = -19.0
 margin_bottom = 89.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -271,21 +267,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/Waves/Panel/Panel"]
+[node name="WaveCounter" type="Label" parent="UI/Waves/Panel/Panel"]
 margin_left = 5.0
 margin_top = 2.0
 margin_right = 253.0
 margin_bottom = 48.0
 custom_fonts/font = SubResource( 5 )
 text = "Wave"
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Timer" type="Control" parent="UI"]
-margin_left = 954.0
+anchor_left = 0.526
+anchor_right = 0.526
+margin_left = 416.428
 margin_top = -50.0
-margin_right = 1083.0
+margin_right = 545.428
 margin_bottom = -5.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -319,61 +318,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Menu" type="Control" parent="."]
-visible = false
-margin_right = 1920.0
-margin_bottom = 1080.0
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="Menu"]
-margin_right = 1925.0
-margin_bottom = 1085.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -293.0
-margin_top = -214.5
-margin_right = 299.0
-margin_bottom = 290.5
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StartButton" type="Button" parent="Menu/VBoxContainer"]
-margin_right = 592.0
-margin_bottom = 165.0
-size_flags_horizontal = 7
-size_flags_vertical = 7
-text = "Start"
-
-[node name="ControlsButton" type="Button" parent="Menu/VBoxContainer"]
-margin_top = 169.0
-margin_right = 592.0
-margin_bottom = 335.0
-size_flags_horizontal = 7
-size_flags_vertical = 7
-text = "Controls"
-
-[node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
-margin_top = 339.0
-margin_right = 592.0
-margin_bottom = 505.0
-size_flags_horizontal = 7
-size_flags_vertical = 7
-text = "Quit"
-
 [connection signal="pressed" from="UI/QuitButton/Quit" to="UI/QuitButton" method="_on_Quit_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/StartButton" to="Menu" method="_on_StartButton_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/ControlsButton" to="Menu" method="_on_ControlsButton_pressed"]
-[connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="Menu" method="_on_QuitButton_pressed"]
