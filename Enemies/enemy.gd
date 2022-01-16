@@ -5,11 +5,13 @@ export var speed = 0
 export var maxHP = 0
 export var damage = 0
 
-var health = 1.0
+var remainingHP = 0
 
+func _ready():
+	remainingHP = maxHP
 
 func _process(delta):
-	if health <= 0:
+	if remainingHP <= 0:
 		free()
 		return
 		
@@ -24,8 +26,8 @@ func _process(delta):
 		transform.origin.y = $RayCast.get_collision_point().y
 
 func get_health():
-	return health
+	return remainingHP/maxHP
 
 func take_damage(damage):
-	health -= damage/(maxHP * 0.98)
+	remainingHP -= damage
 	

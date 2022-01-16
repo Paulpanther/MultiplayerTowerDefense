@@ -70,15 +70,16 @@ func _physics_process(delta):
 			print(lastSpawn)
 			updateWave()
 			if len(Global.waves[currentWave]) - 1 <= lastSpawn:
-				lastSpawn = 0
 				if len(Global.waves) - 1 <= currentWave:
 					levelState = STATE.end
 					print("end" + str(currentWave))
 				else:
-					levelState = STATE.wait
-					Global.stateTimer = 0
-					currentWave += 1
-					print("wait")
+					if len(get_tree().get_nodes_in_group("enemy")) <= 0:
+						lastSpawn = 0
+						levelState = STATE.wait
+						Global.stateTimer = 0
+						currentWave += 1
+						print("wait")
 		STATE.wait:
 			print(Global.stateTimer)
 			if Global.maxWaitTime <= Global.stateTimer:
