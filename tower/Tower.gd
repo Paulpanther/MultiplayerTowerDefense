@@ -21,6 +21,7 @@ func _shoot():
 		return
 	
 	look_at(enemy.transform.origin, Vector3.UP)
+	$"Nozzle/Particles".restart()
 	
 
 func _get_nearest_enemy():

@@ -1,60 +1,107 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://tower/gun_turret/gun_turret.tscn" type="PackedScene" id=1]
-[ext_resource path="res://tower/Tower.tres" type="Material" id=2]
 [ext_resource path="res://tower/Tower.gd" type="Script" id=3]
-
-[sub_resource type="CubeMesh" id=1]
-size = Vector3( 1, 3, 1 )
+[ext_resource path="res://assets/Smoke30Frames.png" type="Texture" id=4]
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.5, 1.5, 0.5 )
 
-[sub_resource type="Gradient" id=5]
-offsets = PoolRealArray( 0, 0.0160428, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.989746, 0.563562, 0.0347958, 1, 0.751465, 0.0440311, 0.0440311, 1 )
+[sub_resource type="Gradient" id=14]
+offsets = PoolRealArray( 0, 0.236287, 0.28692, 0.329114, 0.994652, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 0.28125, 0, 1, 1, 0.962646, 0.402344, 0.990493, 1, 0.140625, 0, 0.998312, 0, 0, 0, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 14 )
 
-[sub_resource type="ParticlesMaterial" id=3]
-lifetime_randomness = 0.44
-trail_color_modifier = SubResource( 6 )
+[sub_resource type="Curve" id=15]
+min_value = -400.0
+max_value = 200.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.366667, -334.545 ), 32.2663, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 15 )
+
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0952381, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.480952, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+trail_divisor = 6
+emission_shape = 1
+emission_sphere_radius = 0.4
 direction = Vector3( 0, 0, 1 )
+spread = 5.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 1.0
-angle = -225.4
-angle_random = 0.18
+initial_velocity = 30.0
+initial_velocity_random = 0.1
+angular_velocity = 40.0
+angular_velocity_random = 1.0
+linear_accel_random = 0.5
+linear_accel_curve = SubResource( 16 )
+angle = 360.0
+angle_random = 1.0
+scale_random = 0.8
+scale_curve = SubResource( 12 )
+color_ramp = SubResource( 10 )
+hue_variation = -0.01
+hue_variation_random = 1.0
+anim_speed = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=8]
 flags_transparent = true
+flags_unshaded = true
 vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = true
+albedo_texture = ExtResource( 4 )
 
-[sub_resource type="CubeMesh" id=4]
-material = SubResource( 7 )
-size = Vector3( 0.1, 0.1, 0.1 )
+[sub_resource type="QuadMesh" id=9]
+material = SubResource( 8 )
 
 [node name="Tower" type="StaticBody"]
 script = ExtResource( 3 )
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
-mesh = SubResource( 1 )
-material/0 = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 shape = SubResource( 2 )
 
 [node name="Nozzle" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49135, 0.83054 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52138, 1.88838, 3.72201 )
 
 [node name="Particles" type="Particles" parent="Nozzle"]
 emitting = false
-amount = 20
-speed_scale = 4.0
-explosiveness = 1.0
-process_material = SubResource( 3 )
-draw_pass_1 = SubResource( 4 )
+amount = 200
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.77
+randomness = 1.0
+local_coords = false
+draw_order = 2
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 9 )
+
+[node name="Nozzle2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.573844, 1.88838, 3.72201 )
+
+[node name="Particles" type="Particles" parent="Nozzle2"]
+emitting = false
+amount = 200
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.77
+randomness = 1.0
+local_coords = false
+draw_order = 2
+process_material = SubResource( 13 )
+draw_pass_1 = SubResource( 9 )
 
 [node name="gun_turret" parent="." instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
