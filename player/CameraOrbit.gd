@@ -11,6 +11,17 @@ var mouseDelta : Vector2 = Vector2()
 
 onready var player = get_parent()
 onready var hand = player.get_node("Hand")
+onready var collisionIndicator = player.get_node("CollisionIndicator")
+
+
+var collision_point
+var collision_group
+
+func get_collision_point():
+	return collision_point
+	
+func get_collision_group():
+	return collision_group
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,14 +56,21 @@ func _process(delta):
 	
 	mouseDelta = Vector2()
 
-	# TBD: Change perspective
-	
-
-	
+	#Camera Controlls
 	if Input.is_action_pressed("camera_left") and !isLeft:
 		translate(Vector3(2, 0, 0))
 		isLeft = true
 	if Input.is_action_pressed("camera_right") and isLeft:
 		translate(Vector3(-2, 0, 0))
 		isLeft = false
-
+	
+	#Ray Collision
+	if $Camera/RayCast.is_colliding():
+		collisionIndicator.show()
+		collision_point = $Camera/RayCast.get_collision_point()
+		collisionIndicator.global_transform.origin = collision_point
+		collision_group = $Camera/RayCast.get_collider().get_groups()[0]
+	else:
+		collision_point = null
+		collision_group = null
+		collisionIndicator.hide()

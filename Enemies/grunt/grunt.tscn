@@ -43,7 +43,7 @@ size = Vector2( 1024, 1024 )
 transparent_bg = true
 usage = 1
 
-[node name="Node2D" parent="Viewport" instance=ExtResource( 3 )]
+[node name="EnemyUi" parent="Viewport" instance=ExtResource( 3 )]
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.89292, 0 )

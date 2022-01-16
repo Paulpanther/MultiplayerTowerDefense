@@ -8,11 +8,19 @@ export var difficulty = 0
 #BASE
 export var baseHealth = 150
 
+#Rescources
+export var Chips = 10
+export var Energy = 0
+
+export var energy_factory_chips_cost = 1
+export var tower_energy_cost = 10
+
 #ENEMIES
 enum ENEMIES{
 	grunt,
 	runner
 }
+
 export(ENEMIES) var enemies = ENEMIES.grunt
 
 #LEVELS
@@ -31,3 +39,9 @@ export var waves = [
 		[12.0, ENEMIES.grunt],
 	]
 ]
+
+func can_place_tower():
+	return Energy >= tower_energy_cost
+
+func can_place_energy_factory():
+	return Chips >= energy_factory_chips_cost

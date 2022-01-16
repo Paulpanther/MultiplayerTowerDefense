@@ -3,18 +3,30 @@ extends Spatial
 export var shoot_delay = 200
 export var rotation_speed = 2
 export var enemy_damage = 0.1
+export var max_distance = 50
 
 var last_shoot = 0
 var last_side_left = false
 var following_enemy
+var is_ghost = false
 
 var soundShoot1 = load("res://tower/gun_turret/medium_gun.mp3")
 var audio = AudioStreamPlayer3D.new()
 
+func _ready():
+	$Range.scale = Vector3(max_distance, max_distance, max_distance)
+	if not is_ghost:
+		Global.Energy -= Global.tower_energy_cost
+
 func set_ghost(enable):
-	pass
+	is_ghost = enable
+	if is_ghost:
+		$Range.show()
 
 func _process(delta):
+	if is_ghost:
+		return
+	
 	var time = OS.get_ticks_msec()
 			
 	if not is_instance_valid(following_enemy):
@@ -59,6 +71,8 @@ func _get_nearest_enemy():
 		if dist < min_dist:
 			min_dist = dist
 			min_enemy = enemy
+	if min_dist > max_distance:
+		return null
 	return min_enemy
 
 func _play_shoot_animation():
