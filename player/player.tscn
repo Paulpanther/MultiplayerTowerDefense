@@ -19,7 +19,7 @@ albedo_color = Color( 0.0627451, 0.941176, 0.560784, 0.286275 )
 [sub_resource type="CubeMesh" id=3]
 size = Vector3( 0.1, 5, 0.1 )
 
-[node name="player" type="KinematicBody"]
+[node name="player" type="KinematicBody" groups=["player"]]
 input_ray_pickable = false
 script = ExtResource( 2 )
 
