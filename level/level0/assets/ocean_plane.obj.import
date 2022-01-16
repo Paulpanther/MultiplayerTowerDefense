@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/ocean_plane.obj-97b2de56d1dab34d06008238e9f72f60.mesh"
+
+[deps]
+
+files=[ "res://.import/ocean_plane.obj-97b2de56d1dab34d06008238e9f72f60.mesh" ]
+
+source_file="res://level/level0/assets/ocean_plane.obj"
+dest_files=[ "res://.import/ocean_plane.obj-97b2de56d1dab34d06008238e9f72f60.mesh", "res://.import/ocean_plane.obj-97b2de56d1dab34d06008238e9f72f60.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

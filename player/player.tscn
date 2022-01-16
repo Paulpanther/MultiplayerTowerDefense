@@ -49,6 +49,7 @@ script = ExtResource( 3 )
 
 [node name="Camera" type="Camera" parent="CameraOrbital"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 1, -5 )
+fov = 85.7
 far = 300.8
 
 [node name="RayCast" type="RayCast" parent="CameraOrbital/Camera"]
