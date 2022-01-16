@@ -6,7 +6,21 @@ export var melee_timeout = 800
 
 onready var camera = $CameraOrbital
 
+onready var anim_player = $Character/Armature/AnimationPlayer
+
 var last_melee = OS.get_system_time_msecs()
+
+func animation_select(dir):
+	if dir.z > 0:
+		anim_player.current_animation = "RunForward-loop"
+	elif dir.z < 0:
+		anim_player.current_animation = "RunBackward-loop"
+	elif dir.x > 0:
+		anim_player.current_animation = "RunRight-loop"
+	elif dir.x < 0:
+		anim_player.current_animation = "RunLeft-loop"
+	else:
+		anim_player.current_animation = "CombatIdle-loop"
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
@@ -22,6 +36,8 @@ func _physics_process(delta):
 	
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
+		
+	animation_select(direction)
 	
 	if is_on_floor():
 		direction = transform.basis.z * direction.z + transform.basis.x * direction.x
