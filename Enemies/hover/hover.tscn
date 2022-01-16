@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/multiplayer/Sync.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/enemy.gd" type="Script" id=2]
+[ext_resource path="res://Enemies/enemy_ui/enemy_ui.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemies/hover/walker_no_legs.obj" type="ArrayMesh" id=4]
+[ext_resource path="res://Enemies/hover/hover_texture.png" type="Texture" id=5]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Viewport")
+
+[node name="EnemyPF" type="PathFollow" groups=["enemy"]]
+loop = false
+script = ExtResource( 2 )
+speed = 15
+maxHP = 50
+damage = 1
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="MeshInstance" type="MeshInstance" parent="KinematicBody"]
+transform = Transform( -1, 0, -0.000209483, 0, 1, 0, 0.000209483, 0, -1, 0, 0.999896, 0 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 3 )
+
+[node name="Sync" type="Node" parent="."]
+script = ExtResource( 1 )
+unreliable_synced = PoolStringArray( "transform" )
+process_only_network_master = true
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0 )
+enabled = true
+cast_to = Vector3( 0, -200, 0 )
+collision_mask = 2
+
+[node name="HealthBar" type="StaticBody" parent="."]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 1024 )
+transparent_bg = true
+usage = 1
+
+[node name="Node2D" parent="Viewport" instance=ExtResource( 3 )]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.89292, 0 )
+flip_v = true
+pixel_size = 0.002
+billboard = 2
+texture = SubResource( 2 )

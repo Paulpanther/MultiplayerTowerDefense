@@ -5,10 +5,9 @@ extends Node
 # var a = 2
 # var b = "text"
 
-const grunt = preload("res://Enemies/grunt/grunt.tscn")
+const grunt = preload("res://Enemies/hover/hover.tscn")
 
 var currentWave = 0
-var stateProgress = 0
 var lastSpawn = -1
 var levelState = STATE.start
 var paths: Array = []
@@ -33,7 +32,7 @@ func spawnEnemy(type):
 func updateWave():
 	var updated = false
 	while not updated:
-		if len(Global.waves[0]) >lastSpawn + 1 and Global.waves[0][lastSpawn + 1][0] <= stateProgress:
+		if len(Global.waves[0]) >lastSpawn + 1 and Global.waves[0][lastSpawn + 1][0] <= Global.stateTimer:
 			spawnEnemy(Global.waves[0][lastSpawn + 1][1])
 			lastSpawn += 1
 		else:
@@ -50,12 +49,12 @@ func _ready():
 
 
 func _physics_process(delta):
-	stateProgress += delta
+	Global.stateTimer += delta
 	match levelState:
 		STATE.start:
-			if Input.is_action_just_pressed("ui_focus_next"):
+			if Global.stateTimer > Global.startDelay:
 				levelState = STATE.wave
-				stateProgress = 0
+				Global.stateTimer = 0
 		STATE.wave:
 			updateWave()
 			if len(Global.waves[0]) - 1 <= lastSpawn:
@@ -64,11 +63,11 @@ func _physics_process(delta):
 					print("end")
 				else:
 					levelState = STATE.wait
-					stateProgress = 0
+					Global.stateTimer = 0
 					currentWave += 1
 					print("wait")
 		STATE.wait:
-			if Global.maxWaitTime <= stateProgress:
+			if Global.maxWaitTime <= Global.stateTimer:
 				levelState = STATE.wave
 			pass
 		STATE.end:

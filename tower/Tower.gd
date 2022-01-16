@@ -15,6 +15,8 @@ var audio = AudioStreamPlayer3D.new()
 
 func _ready():
 	$Range.scale = Vector3(max_distance, max_distance, max_distance)
+	if not is_ghost:
+		Global.Energy -= Global.tower_energy_cost
 
 func set_ghost(enable):
 	is_ghost = enable
