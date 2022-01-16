@@ -37,4 +37,3 @@ remotesync func _place_tower_in_game(transform):
 	var tower = tower_scene.instance()
 	tower.transform = transform
 	get_parent().get_parent().add_child(tower)
-			

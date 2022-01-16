@@ -7,14 +7,18 @@ export var enemy_damage = 0.1
 var last_shoot = 0
 var last_side_left = false
 var following_enemy
+var is_ghost = false
 
 var soundShoot1 = load("res://tower/gun_turret/medium_gun.mp3")
 var audio = AudioStreamPlayer3D.new()
 
 func set_ghost(enable):
-	pass
+	is_ghost = enable
 
 func _process(delta):
+	if is_ghost:
+		return
+	
 	var time = OS.get_ticks_msec()
 			
 	if not is_instance_valid(following_enemy):

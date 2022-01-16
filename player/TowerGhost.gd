@@ -11,7 +11,6 @@ func set_scene_if_not_present():
 
 func remove_obj():
 	if placed:
-		placed.set_ghost(false)
 		remove_child(placed)
 		placed.global_transform = self.global_transform
 		var p = placed

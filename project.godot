@@ -34,10 +34,6 @@ config/icon="res://icon.png"
 
 Global="*res://Global.gd"
 
-[display]
-
-window/size/fullscreen=true
-
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/multiplayer/plugin.cfg" )
