@@ -7,6 +7,7 @@ export var melee_timeout = 800
 onready var camera = $CameraOrbital
 
 onready var anim_player = $Character/Armature/AnimationPlayer
+onready var shoot_particles = $Character/Armature/WeaponHold/Particles
 
 var last_melee = OS.get_system_time_msecs()
 
@@ -59,4 +60,5 @@ func _process_melee():
 			if time - last_melee > melee_timeout:
 				enemy.rpc("take_damage", melee_damage)
 				last_melee = time
+				shoot_particles.restart()
 
