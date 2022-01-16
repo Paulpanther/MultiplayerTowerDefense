@@ -32,6 +32,9 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	$Camera.current = player.is_network_master()
+	if not player.is_network_master():
+		$Camera/Crosshair.hide()
+	collisionIndicator.hide()
 
 
 func _input(event):
@@ -64,12 +67,12 @@ func _process(delta):
 		isLeft = false
 	
 	#Ray Collision
-	if $Camera/RayCast.is_colliding() and $Camera/RayCast.get_collider() != null:
+	if $Camera/RayCast.is_colliding():
 		#collisionIndicator.show()
 		collision_point = $Camera/RayCast.get_collision_point()
 		collisionIndicator.global_transform.origin = collision_point
 		collider = $Camera/RayCast.get_collider()
-		if collider == null:
+		if collider == null or not is_instance_valid(collider):
 			collision_group = null
 			return
 		collision_group = collider.get_groups()[0]

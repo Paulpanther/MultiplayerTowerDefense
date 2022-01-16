@@ -53,7 +53,7 @@ func take_chip():
 	Global.rpc("add_chips", 1)
 
 func _process_melee():
-	if camera.get_collision_group() == "enemy_collider":
+	if camera.get_collision_group() == "enemy_collider" and is_instance_valid(camera.get_collider()):
 		var enemy = camera.get_collider().get_parent()
 		
 		if Input.is_action_pressed("melee"):
