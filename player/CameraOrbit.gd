@@ -10,7 +10,6 @@ var isLeft : bool = true
 var mouseDelta : Vector2 = Vector2()
 
 onready var player = get_parent()
-onready var hand = player.get_node("Hand")
 onready var collisionIndicator = player.get_node("CollisionIndicator")
 
 
@@ -47,10 +46,6 @@ func _process(delta):
 	
 	rotation_degrees.x += rot.x
 	rotation_degrees.x = clamp(rotation_degrees.x, minLookAngle, maxLookAngle)
-	
-	hand.rotation_degrees.x += rot.x
-	hand.rotation_degrees.x = clamp(hand.rotation_degrees.x, minLookAngle + 90, maxLookAngle + 90)
-	#print(hand.rotation_degrees.x)
 	
 	player.rotation_degrees.y -= rot.y
 	
