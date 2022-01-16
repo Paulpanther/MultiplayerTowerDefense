@@ -88,8 +88,10 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0
 script = ExtResource( 5 )
 scene = ExtResource( 6 )
 action = "place_tower_mode"
+requirement_func = "can_place_tower"
 
 [node name="EnergyFactoryGhost" type="Spatial" parent="AllPlacementGhosts"]
 script = ExtResource( 5 )
 scene = ExtResource( 8 )
 action = "place_energy_factory_mode"
+requirement_func = "can_place_energy_factory"

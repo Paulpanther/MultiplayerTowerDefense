@@ -3,6 +3,7 @@ extends Spatial
 var placed = false
 export(PackedScene) var scene
 export(String) var action
+export(String) var requirement_func
 var place_mode = false
 
 onready var camera = $"../../CameraOrbital"
@@ -10,10 +11,11 @@ onready var all_ghosts = $"../"
 
 func _process(delta):
 	if Input.is_action_just_pressed(action):
-		place_mode = not place_mode
-		
-		if place_mode:
-			all_ghosts.set_active(self)
+		if Global.call(requirement_func):
+			place_mode = not place_mode
+			
+			if place_mode:
+				all_ghosts.set_active(self)
 	
 	if not place_mode:
 		remove_obj()

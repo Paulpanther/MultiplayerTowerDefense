@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://addons/multiplayer/NetworkGame.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/chip.png" type="Texture" id=8]
 [ext_resource path="res://game/QuitButton.gd" type="Script" id=9]
 [ext_resource path="res://UI/Assets/lightning_bolt.webp" type="Texture" id=10]
+[ext_resource path="res://UI/EnergyCounter.gd" type="Script" id=11]
 
 [sub_resource type="Theme" id=1]
 
@@ -207,7 +208,7 @@ margin_right = 62.0
 margin_bottom = 60.0
 text = "0
 "
-script = ExtResource( 7 )
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

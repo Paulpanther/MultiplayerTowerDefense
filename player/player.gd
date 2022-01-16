@@ -28,5 +28,5 @@ func _physics_process(delta):
 	move_and_slide(direction * speed, Vector3.UP)
 
 func take_chip():
-	print("Chip")
+	Global.Chips += 1
 
