@@ -5,9 +5,11 @@ extends Node
 # var a = 2
 # var b = "text"
 
-const grunt = preload("res://Enemies/hover/hover.tscn")
+const grunt = preload("res://Enemies/grunt/grunt.tscn")
+const hover = preload("res://Enemies/hover/hover.tscn")
+const runner = preload("res://Enemies/runner/runner.tscn")
 
-var currentWave = 0
+var currentWave = 0 
 var lastSpawn = -1
 var levelState = STATE.start
 var paths: Array = []
@@ -23,17 +25,25 @@ enum STATE{
 func spawnEnemy(type):
 	print("spawn " + str(type))
 	lastPath = (lastPath + 1) % len(paths)
-	
-	var pfEnemy = grunt.instance()
-	
+	var pfEnemy
+	match type:
+		Global.ENEMIES.grunt :
+			pfEnemy = grunt.instance()
+		Global.ENEMIES.hover:
+			pfEnemy = hover.instance()
+		Global.ENEMIES.runner:
+			pfEnemy = runner.instance()
+		_:
+			pfEnemy = grunt.instance()
+			
 	paths[lastPath].add_child(pfEnemy)
 	pass
 
 func updateWave():
 	var updated = false
 	while not updated:
-		if len(Global.waves[0]) >lastSpawn + 1 and Global.waves[0][lastSpawn + 1][0] <= Global.stateTimer:
-			spawnEnemy(Global.waves[0][lastSpawn + 1][1])
+		if len(Global.waves[currentWave]) >lastSpawn + 1 and Global.waves[currentWave][lastSpawn + 1][0] <= Global.stateTimer:
+			spawnEnemy(Global.waves[currentWave][lastSpawn + 1][1])
 			lastSpawn += 1
 		else:
 			updated = true
@@ -49,6 +59,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	
 	Global.stateTimer += delta
 	match levelState:
 		STATE.start:
@@ -56,18 +67,22 @@ func _physics_process(delta):
 				levelState = STATE.wave
 				Global.stateTimer = 0
 		STATE.wave:
+			print(lastSpawn)
 			updateWave()
-			if len(Global.waves[0]) - 1 <= lastSpawn:
+			if len(Global.waves[currentWave]) - 1 <= lastSpawn:
+				lastSpawn = 0
 				if len(Global.waves) - 1 <= currentWave:
 					levelState = STATE.end
-					print("end")
+					print("end" + str(currentWave))
 				else:
 					levelState = STATE.wait
 					Global.stateTimer = 0
 					currentWave += 1
 					print("wait")
 		STATE.wait:
+			print(Global.stateTimer)
 			if Global.maxWaitTime <= Global.stateTimer:
+				Global.stateTimer = 0.0
 				levelState = STATE.wave
 			pass
 		STATE.end:

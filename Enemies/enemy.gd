@@ -6,20 +6,16 @@ export var maxHP = 0
 export var damage = 0
 
 var health = 1.0
-var chip_scene = preload("res://resources/chips/chip.tscn")
-onready var game = get_parent().get_parent().get_parent()
 
 
 func _process(delta):
 	if health <= 0:
-		var chip = chip_scene.instance()
-		chip.global_transform.origin = global_transform.origin
-		game.add_child(chip)
 		free()
 		return
 		
 	var unit_speed = unit_offset/(offset+0.01) * speed
 	if self.unit_offset + (delta * unit_speed) >= 0.99:
+		print("damage " + str(Global.baseHealth))
 		Global.baseHealth -= 1
 		queue_free()
 	else:
@@ -32,5 +28,5 @@ func get_health():
 	return health
 
 func take_damage(damage):
-	health -= damage
+	health -= damage/(maxHP * 0.98)
 	

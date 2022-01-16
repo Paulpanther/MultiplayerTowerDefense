@@ -12,8 +12,8 @@ viewport_path = NodePath("Viewport")
 [node name="EnemyPF" type="PathFollow" groups=["enemy"]]
 loop = false
 script = ExtResource( 1 )
-speed = 15
-maxHP = 50
+speed = 12
+maxHP = 4
 damage = 1
 
 [node name="KinematicBody" type="KinematicBody" parent="."]

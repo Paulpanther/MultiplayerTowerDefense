@@ -1,0 +1,11 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type spatial;
+render_mode unshaded;
+
+void fragment(){
+	vec4 pos  = CAMERA_MATRIX * vec4(VERTEX, 1.0);
+	ALBEDO = pos.xyz;
+	ALPHA = 0.7;
+}"

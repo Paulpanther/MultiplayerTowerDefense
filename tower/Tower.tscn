@@ -77,6 +77,7 @@ albedo_color = Color( 0.619608, 1, 0, 0.439216 )
 [node name="Tower" type="StaticBody"]
 script = ExtResource( 3 )
 shoot_delay = 500
+enemy_damage = 1.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
