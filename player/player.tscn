@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://addons/multiplayer/Sync.gd" type="Script" id=1]
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 [ext_resource path="res://player/CameraOrbit.gd" type="Script" id=3]
 [ext_resource path="res://player/Hand.gd" type="Script" id=4]
-[ext_resource path="res://player/TowerGhost.gd" type="Script" id=5]
+[ext_resource path="res://player/PlacementGhost.gd" type="Script" id=5]
+[ext_resource path="res://tower/Tower.tscn" type="PackedScene" id=6]
+[ext_resource path="res://player/AllGhosts.gd" type="Script" id=7]
+[ext_resource path="res://resources/energy_factory/energy_factory.tscn" type="PackedScene" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5, 1, 0.5 )
@@ -59,10 +62,6 @@ enabled = true
 cast_to = Vector3( 0, 0, 20 )
 collision_mask = 10
 
-[node name="TowerGhost" type="Spatial" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
-script = ExtResource( 5 )
-
 [node name="Hand" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.33254, -0.943089, 0, 0.943089, -0.33254, 0, 1.2408, 0 )
 script = ExtResource( 4 )
@@ -80,3 +79,17 @@ material/0 = null
 [node name="CollisionIndicator" type="MeshInstance" parent="."]
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
+
+[node name="AllPlacementGhosts" type="Spatial" parent="."]
+script = ExtResource( 7 )
+
+[node name="TowerGhost" type="Spatial" parent="AllPlacementGhosts"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+script = ExtResource( 5 )
+scene = ExtResource( 6 )
+action = "place_tower_mode"
+
+[node name="EnergyFactoryGhost" type="Spatial" parent="AllPlacementGhosts"]
+script = ExtResource( 5 )
+scene = ExtResource( 8 )
+action = "place_energy_factory_mode"
