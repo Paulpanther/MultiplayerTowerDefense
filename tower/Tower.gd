@@ -7,6 +7,9 @@ var last_shoot = 0
 var last_side_left = false
 var following_enemy
 
+var soundShoot1 = load("res://tower/gun_turret/medium_gun.mp3")
+var audio = AudioStreamPlayer3D.new()
+
 func set_ghost(enable):
 	pass
 
@@ -38,6 +41,9 @@ func _shoot():
 	
 	_get_current_nozzle().get_node("Particles").restart()
 	_play_shoot_animation()
+	
+	$shoot.play()
+	
 	last_side_left = not last_side_left
 	
 

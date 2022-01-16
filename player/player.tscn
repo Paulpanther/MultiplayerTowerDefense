@@ -44,6 +44,7 @@ script = ExtResource( 3 )
 
 [node name="Camera" type="Camera" parent="CameraOrbital"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 1, -5 )
+far = 300.8
 
 [node name="Hand" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.33254, -0.943089, 0, 0.943089, -0.33254, 0, 1.2408, 0 )
