@@ -24,6 +24,8 @@ func handle_ground_hit():
 		var point = camera.get_collision_point()
 		set_scene_if_not_present()
 		global_transform.origin = point
+		if Input.is_action_just_pressed("rotate"):
+			global_rotate(Vector3.UP, 45.0)
 		
 		if Input.is_action_just_pressed("mouse_click"):
 			var tower = remove_obj()

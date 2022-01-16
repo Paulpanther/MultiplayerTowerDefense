@@ -12,6 +12,8 @@ var mouseDelta : Vector2 = Vector2()
 onready var player = get_parent()
 onready var hand = player.get_node("Hand")
 onready var collisionIndicator = player.get_node("CollisionIndicator")
+
+
 var collision_point
 var collision_group
 
@@ -54,17 +56,15 @@ func _process(delta):
 	
 	mouseDelta = Vector2()
 
-	# TBD: Change perspective
-	
-
-	
+	#Camera Controlls
 	if Input.is_action_pressed("camera_left") and !isLeft:
 		translate(Vector3(2, 0, 0))
 		isLeft = true
 	if Input.is_action_pressed("camera_right") and isLeft:
 		translate(Vector3(-2, 0, 0))
 		isLeft = false
-		
+	
+	#Ray Collision
 	if $Camera/RayCast.is_colliding():
 		collisionIndicator.show()
 		collision_point = $Camera/RayCast.get_collision_point()
@@ -74,8 +74,5 @@ func _process(delta):
 		collision_point = null
 		collision_group = null
 		collisionIndicator.hide()
-	print(collision_group)
+	#print(collision_group)
 	
-
-	
-
