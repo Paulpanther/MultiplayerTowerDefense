@@ -8,6 +8,9 @@ export var difficulty = 0
 #BASE
 export var baseHealth = 150
 
+#CHIPS
+export var Chips = 10
+
 #ENEMIES
 enum ENEMIES{
 	grunt,

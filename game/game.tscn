@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://addons/multiplayer/NetworkGame.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://level/level0/level0.tscn" type="PackedScene" id=3]
 [ext_resource path="res://resources/rock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://UI/LoseBaseHP.gd" type="Script" id=5]
+[ext_resource path="res://UI/ChipCounter.gd" type="Script" id=7]
+[ext_resource path="res://icon.png" type="Texture" id=8]
 
 [sub_resource type="Theme" id=1]
 
@@ -26,56 +28,102 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0050354, 0.0155754, -0.0058
 
 [node name="rock" parent="game" instance=ExtResource( 4 )]
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 anchor_left = 0.02
 anchor_top = 0.03
 anchor_right = 0.02
 anchor_bottom = 0.03
-margin_left = -0.480001
-margin_right = 19.52
+margin_left = 0.520002
+margin_right = 20.52
 margin_bottom = 22.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LostHP" type="PanelContainer" parent="Control"]
+[node name="BaseHP" type="Control" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_right = 487.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="UI/BaseHP"]
+margin_left = 8.0
+margin_top = 12.0
+margin_right = 448.0
+margin_bottom = 52.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/BaseHP"]
+margin_left = 393.0
+margin_top = 27.0
+margin_right = 442.0
+margin_bottom = 58.0
+text = "BaseHP
+"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LostHP" type="PanelContainer" parent="UI/BaseHP"]
 modulate = Color( 0.180392, 0.203922, 0.196078, 1 )
-anchor_left = 0.75
-anchor_top = 0.818
-anchor_right = 0.75
-anchor_bottom = 0.818
-margin_left = -9.53674e-07
-margin_top = 0.00399971
-margin_right = 368.0
-margin_bottom = 32.004
+margin_left = 15.0
+margin_top = 19.0
+margin_right = 388.0
+margin_bottom = 46.0
 theme = SubResource( 1 )
 custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HPBar" type="PanelContainer" parent="Control"]
-anchor_left = 0.768
-anchor_top = 0.831
-anchor_right = 0.768
-anchor_bottom = 0.831
-margin_left = 1.64
-margin_top = 1.718
-margin_right = 365.64
-margin_bottom = 29.718
+[node name="HPBar" type="PanelContainer" parent="UI/BaseHP"]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 387.0
+margin_bottom = 45.0
 custom_styles/panel = SubResource( 3 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Control"]
-margin_left = 393.0
-margin_top = 27.0
-margin_right = 451.0
-margin_bottom = 102.0
-text = "BaseHP
+[node name="Control" type="Control" parent="UI"]
+margin_left = 40.0
+margin_top = 51.0
+margin_right = 171.0
+margin_bottom = 107.0
+
+[node name="Panel" type="Panel" parent="UI/Control"]
+margin_left = -2.0
+margin_top = 6.0
+margin_right = 62.0
+margin_bottom = 42.0
+
+[node name="ChipCounter" type="Label" parent="UI/Control"]
+margin_left = 9.0
+margin_top = 18.0
+margin_right = 64.0
+margin_bottom = 62.0
+text = "0
 "
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control"]
+margin_left = 27.0
+margin_top = 10.0
+margin_right = 56.0
+margin_bottom = 37.0
+texture = ExtResource( 8 )
+expand = true
