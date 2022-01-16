@@ -17,3 +17,6 @@ func _process(delta):
 		
 	if $RayCast.is_colliding():
 		transform.origin.y = $RayCast.get_collision_point().y
+
+func get_health():
+	return 0.5

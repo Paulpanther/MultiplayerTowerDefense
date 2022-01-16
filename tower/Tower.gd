@@ -26,9 +26,9 @@ func _process(delta):
 
 func _interpolate_rotation(delta):
 	var final = transform.looking_at(following_enemy.transform.origin, Vector3.UP)
-	transform.basis.x = lerp(transform.basis.x, final.basis.x, delta * rotation_speed)
-	transform.basis.y = lerp(transform.basis.y, final.basis.y, delta * rotation_speed)
-	transform.basis.z = lerp(transform.basis.z, final.basis.z, delta * rotation_speed)
+	var final_quat = Quat(final.basis)
+	var to_quat = Quat(transform.basis).slerp(final_quat, delta * rotation_speed)
+	transform.basis = Basis(to_quat)	
 
 func _shoot():
 	var enemy = _get_nearest_enemy()
