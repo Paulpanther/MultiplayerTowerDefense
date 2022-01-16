@@ -1,6 +1,6 @@
 extends Spatial
 
-export var shoot_delay = 700
+export var shoot_delay = 200
 export var rotation_speed = 2
 
 var last_shoot = 0
@@ -12,6 +12,9 @@ func set_ghost(enable):
 
 func _process(delta):
 	var time = OS.get_ticks_msec()
+			
+	if not is_instance_valid(following_enemy):
+		following_enemy = null
 	
 	if time - last_shoot > shoot_delay:
 		last_shoot = time
@@ -34,6 +37,7 @@ func _shoot():
 	following_enemy = enemy
 	
 	_get_current_nozzle().get_node("Particles").restart()
+	_play_shoot_animation()
 	last_side_left = not last_side_left
 	
 
@@ -48,6 +52,10 @@ func _get_nearest_enemy():
 			min_dist = dist
 			min_enemy = enemy
 	return min_enemy
+
+func _play_shoot_animation():
+	var player = $"gun_turret/AnimationPlayer"
+	player.play("default")
 
 func _get_current_nozzle():
 	if last_side_left:
