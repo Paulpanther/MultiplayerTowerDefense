@@ -73,10 +73,10 @@ script = ExtResource( 3 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 shape = SubResource( 2 )
 
-[node name="Nozzle" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.52138, 1.88838, 3.72201 )
+[node name="NozzleLeft" type="Spatial" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.521, 1.888, -3.722 )
 
-[node name="Particles" type="Particles" parent="Nozzle"]
+[node name="Particles" type="Particles" parent="NozzleLeft"]
 emitting = false
 amount = 200
 lifetime = 0.4
@@ -88,10 +88,10 @@ draw_order = 2
 process_material = SubResource( 13 )
 draw_pass_1 = SubResource( 9 )
 
-[node name="Nozzle2" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.573844, 1.88838, 3.72201 )
+[node name="NozzleRight" type="Spatial" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.574, 1.888, -3.722 )
 
-[node name="Particles" type="Particles" parent="Nozzle2"]
+[node name="Particles" type="Particles" parent="NozzleRight"]
 emitting = false
 amount = 200
 lifetime = 0.4
@@ -104,4 +104,4 @@ process_material = SubResource( 13 )
 draw_pass_1 = SubResource( 9 )
 
 [node name="gun_turret" parent="." instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
