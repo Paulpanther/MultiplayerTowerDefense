@@ -59,6 +59,9 @@ enabled = true
 cast_to = Vector3( 0, 0, 20 )
 collision_mask = 10
 
+[node name="Crosshair" type="Sprite3D" parent="CameraOrbital/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, -5.28683 )
+
 [node name="TowerGhost" type="Spatial" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 script = ExtResource( 5 )
@@ -74,9 +77,11 @@ collision_mask = 6
 
 [node name="MeshInstance" type="MeshInstance" parent="Hand"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00775719, 2.57286, -0.0348471 )
+visible = false
 mesh = SubResource( 3 )
 material/0 = null
 
 [node name="CollisionIndicator" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )

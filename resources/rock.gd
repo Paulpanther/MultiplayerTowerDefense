@@ -8,20 +8,24 @@ var respawn_time = 5.0
 var capacity_left = capacity
 var respawn_timer
 
+
 #remove later
 var format_feedback_str = "Rocks left: %s."
 
 
 func _ready():
 	respawn_timer = get_tree().create_timer(0.0)
+
 	
-func hit(hand):
+func hot():
 	if Input.is_action_just_pressed("mouse_click") and available:
 		capacity_left -= 1
 		
 		#remove later
 		var feedback_str = format_feedback_str % capacity_left
 		print(feedback_str)
+		
+		
 	
 func respawn():
 	available = true
@@ -41,3 +45,4 @@ func despawn():
 func _process(delta):
 	if capacity_left == 0:
 		despawn()
+

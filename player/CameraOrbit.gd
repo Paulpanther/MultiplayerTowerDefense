@@ -16,6 +16,10 @@ onready var collisionIndicator = player.get_node("CollisionIndicator")
 
 var collision_point
 var collision_group
+var collider
+
+onready var crosshair_tex1 = preload("res://assets/crosshair.png")
+onready var crosshair_tex2 = preload("res://assets/chip.png")
 
 func get_collision_point():
 	return collision_point
@@ -29,6 +33,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	$Camera.current = player.is_network_master()
+	
 
 
 func _input(event):
@@ -37,6 +42,7 @@ func _input(event):
 	
 	if event is InputEventMouseMotion:
 		mouseDelta = event.relative
+		
 		
 
 func _process(delta):
@@ -66,13 +72,35 @@ func _process(delta):
 	
 	#Ray Collision
 	if $Camera/RayCast.is_colliding():
-		collisionIndicator.show()
+		#collisionIndicator.show()
 		collision_point = $Camera/RayCast.get_collision_point()
 		collisionIndicator.global_transform.origin = collision_point
-		collision_group = $Camera/RayCast.get_collider().get_groups()[0]
+		collider = $Camera/RayCast.get_collider()
+		collision_group = collider.get_groups()[0]
+		
 	else:
 		collision_point = null
 		collision_group = null
 		collisionIndicator.hide()
-	#print(collision_group)
+	
+	
+	if collider.has_method("hot") and Input.is_action_just_pressed("mouse_click"):
+		collider.hot()
+	
+	switch_crosshair(collision_group)
+
+
+func switch_crosshair(group):
+	
+	if group == null:
+		$Camera/Crosshair.show()
+		$Camera/Crosshair.set_texture(crosshair_tex1)
+	
+	if group == "rock":
+		$Camera/Crosshair.show()
+		$Camera/Crosshair.set_texture(crosshair_tex2)
+	
+	if group == "ground":
+		$Camera/Crosshair.hide()
+	
 	
